@@ -28,30 +28,29 @@ function calculateTime() {
   const now = new Date(); // Get the current date and time
 
   // Create a date object for today at 6 AM
-  const sixAM = new Date(
+  const startTime = new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    4,
+    timeNow.getHours() > 12 ? 17: 6,
     0,
     0
   );
+  console.log(timeNow.getHours() , startTime)
 
-  // Create a date object for the next 6 AM
-  const nextSixAM = new Date(
+  const endTime = new Date(
     now.getFullYear(),
     now.getMonth(),
-    now.getDate() + (now >= sixAM ? 1 : 0),
-    4,
+    now.getDate(),
+    timeNow.getHours() > 12 ? 21 : 10,
     0,
     0
   );
-
-  // Calculate time passed since today's 6 AM
-  const timePassed = now - sixAM;
+  const timePassed = now - startTime;
 
   // Calculate time remaining until the next 6 AM
-  const timeRemaining = nextSixAM - now;
+  
+  const timeRemaining = endTime - now;
 
   // Convert milliseconds to hours, minutes, seconds
   const formatTime = (milliseconds) => {
